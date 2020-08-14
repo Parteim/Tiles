@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b74a98d1b.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    {% block styles %}
+    {% endblock styles %}
 
     <title>Title</title>
 </head>
 <body>
-{{ message }}
+    <menu class="main_menu">
+
+        <li class="main_menu_item sign_up_container">
+            <a href="sign_up" class="link_sign_up">
+                <i class="fas fa-user-plus"></i>
+            </a>
+        </li>
+        <li class="main_menu_item">
+            <a href="{{ url_for('wall') }}" class="link_wall">wall</a>
+        </li>
+
+    </menu>
+
+    <main>  
+
+        {% block main %}
+
+
+
+        {% endblock main %}
+
+    </main>
+
 </body>
 </html>

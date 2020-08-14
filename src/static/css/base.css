@@ -1,0 +1,67 @@
+.palet {
+    color: #00b8a9;
+    color: #f8f3d4;
+    color: #f6416c;
+    color: #ffde7d;
+}
+
+body {
+    background-color: #f8f3d4;
+
+    font-family: 'Baloo Tamma 2', cursive;
+}
+
+.main_menu {
+    position: fixed;
+
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffde7d;
+}
+
+.main_menu_item {
+    margin: 0 10px;
+
+    font-size: 21px;
+}
+
+.main_menu_item a {
+    color: #f6416c;
+
+    transition: all .2s;
+}
+
+.main_menu_item a:hover{
+    color: rgba(246, 65, 107, 0.596);
+}
+
+.sign_up_container {
+    position: absolute;
+
+    left: 5%;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    width: 4%;
+    height: 130%;
+
+    background-color: #ffde7d;
+
+    border-radius: 10px;
+
+    transition: all .2s;
+}
+
+.sign_up_container a {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
