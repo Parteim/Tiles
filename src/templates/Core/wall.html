@@ -1,0 +1,142 @@
+{% extends 'Base/base_template.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wall.css') }}">
+{% endblock styles %}
+
+{% block main %}
+
+<ul class="wall">
+
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span>
+                </div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="{{ url_for('static', filename='img/user-2.jpg') }}" alt="user-2" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-3.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span></div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="" alt="" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span></div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="" alt="" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span></div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="" alt="" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span></div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="" alt="" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="tile">
+        <div class="tile_container">
+            <header class="tile_header">
+                <div class="tile_author_img_container">
+                    <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="some user"
+                         class="tile_author_img">
+                </div>
+                <h3 class="tile_author"><span>Some username</span></h3>
+            </header>
+            <div class="tile_content">
+                <div class="tile_content_element"><span class="tile_content_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque provident
+                        tenetur voluptatum. Adipisci atque, commodi consequuntur, earum fuga inventore, libero
+                        molestias nam nemo quam quas qui sequi soluta ullam vero</span></div>
+                <div class="tile_content_element">
+                    <div class="tile_content_img_container">
+                        <img src="" alt="" class="tile_content_img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+
+</ul>
+
+{% endblock main %}

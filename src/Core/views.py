@@ -5,4 +5,4 @@ from app import app
 
 @app.route('/')
 def wall():
-    return render_template('Base/base_template.html', message='Hi')
+    return render_template('Core/wall.html', title='Wall')

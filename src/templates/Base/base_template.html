@@ -11,14 +11,14 @@
     {% block styles %}
     {% endblock styles %}
 
-    <title>Title</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     <menu class="main_menu">
 
         <li class="main_menu_item sign_up_container">
             <a href="sign_up" class="link_sign_up">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-sign-in-alt"></i>
             </a>
         </li>
         <li class="main_menu_item">
@@ -30,8 +30,6 @@
     <main>  
 
         {% block main %}
-
-
 
         {% endblock main %}
 
