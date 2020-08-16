@@ -65,6 +65,8 @@ body {
 }
 
 .main_menu_item:hover {
+    transform: translate(0,10px);
+
      box-shadow: 0 13px 23px rgba(246, 65, 108, .3);
 }
 
@@ -74,6 +76,10 @@ body {
     left: 2%;
     top: 50%;
     transform: translate(-2%, -50%);
+}
+
+.sign_up_container:hover {
+    transform: translate(-2%, calc(-50% + 10px));
 }
 
 main {
