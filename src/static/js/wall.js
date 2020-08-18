@@ -22,7 +22,6 @@ class Tile {
     };
 
     createTile() {
-
         this.element.className = 'tile ';
         this.header.className = 'tile_header';
         this.tileAuthorImgContainer.className = 'tile_author_img_container';
@@ -31,7 +30,9 @@ class Tile {
         this.tileContent.className='tile_content';
 
         for (let contentElement in this.contentElements) {
-
+            let newElement = document.createElement('div')
+            newElement.className = 'tile_content_element'
+            this.tileContent.appendChild(newElement)
         }
 
         this.element.appendChild(this.header);
@@ -41,12 +42,12 @@ class Tile {
 
     }
 
-    constructor(id, type, contentElements, username, imagePath) {
+    constructor(id, type, contentElements, user) {
         this.id = id;
         this.type = type;
         this.contentElements = contentElements;
-        this.author.username = username;
-        this.author.imagePath = imagePath;
+        this.author.username = user.username;
+        this.author.imagePath = user.image;
 
         if (this.type) {
             this.element.className += this.type;
