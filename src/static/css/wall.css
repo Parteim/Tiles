@@ -71,6 +71,7 @@
 .tile_author {
     color: #10433e;
     font-size: 22px;
+    line-height: 20px;
 }
 
 .tile_content {
@@ -144,6 +145,7 @@
     margin-left: 10%;
 
     font-size: 40px;
+    line-height: 27px;
 }
 
 .large-tile .tile_content .tile_content_element:nth-child(1) {
