@@ -42,13 +42,13 @@ class Tile {
         this.header.appendChild(this.tileAuthorImgContainer);
         this.header.appendChild(this.tileAuthor);
 
-        this.tileAuthor.innerHTML = '<span>'+ this.author.username +'</span>'
+        this.tileAuthor.innerHTML = '<span>'+ this.author.username +'</span>';
         this.tileAuthorImg.src = this.author.imagePath;
 
         for (let contentElement in this.contentElements) {
-            let newElement = document.createElement('div')
-            newElement.className = 'tile_content_element'
-            this.tileContent.appendChild(newElement)
+            let newElement = document.createElement('div');
+            newElement.className = 'tile_content_element';
+            this.tileContent.appendChild(newElement);
         }
 
     }
@@ -60,9 +60,9 @@ class Tile {
         // this.author.username = user.username;
         // this.author.imagePath = user.image;
 
-        console.log(this.type)
+        console.log(this.type);
 
-        this.createTile()
+        this.createTile();
 
     }
 
@@ -72,8 +72,8 @@ class Tile {
 
         this.element.addEventListener("click", function () {
             if (!Tile.revealFlag) {
-                obj.reveal()
-                Tile.revealFlag = true
+                obj.reveal();
+                Tile.revealFlag = true;
             }
         })
     }
@@ -133,7 +133,7 @@ class Tile {
 
         document.getElementsByTagName('html')[0].style.overflow = 'hidden';
 
-        revealTileContent()
+        revealTileContent();
 
         appear(this.element);
 

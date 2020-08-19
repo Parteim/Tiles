@@ -1,0 +1,9 @@
+flask
+flask-sqlalchemy
+flask-migrate
+flask-scripts
+mysql-connector-python
+marshmallow
+
+======== for tests =====
+requests
