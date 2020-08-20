@@ -14,26 +14,37 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <menu class="main_menu">
 
-        <li class="main_menu_item sign_up_container">
-            <a href="{{ url_for('User.sign_in') }}" class="link_sign_up">
-                <i class="fas fa-sign-in-alt"></i>
-            </a>
-        </li>
-        <li class="main_menu_item">
-            <a href="{{ url_for('wall') }}" class="link_wall">wall</a>
-        </li>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
-    </menu>
+<menu class="main_menu">
 
-    <main>  
+    <li class="main_menu_item sign_up_container">
+        <a href="{{ url_for('User.sign_in') }}" class="link_sign_up">
+            <i class="fas fa-sign-in-alt"></i>
+        </a>
+    </li>
+    <li class="main_menu_item">
+        <a href="{{ url_for('wall') }}" class="link_wall">wall</a>
+    </li>
 
-        {% block main %}
+</menu>
 
-        {% endblock main %}
+<main>
 
-    </main>
+    {% block main %}
+
+    {% endblock main %}
+
+</main>
 
 {% block scripts %}
 {% endblock scripts %}

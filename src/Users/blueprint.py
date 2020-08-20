@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, session, render_template, request, url_for
+from flask import Blueprint, redirect, session, render_template, request, url_for, flash
 
 from Users.moduls import db, User
 
@@ -27,7 +27,7 @@ def sign_up():
             db.session.add(user)
             db.session.commit()
         except Exception:
-            print(False)
+            flash('message')
     return render_template('User/sign-up.html')
 
 

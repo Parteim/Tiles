@@ -1,4 +1,4 @@
-.sign_up_form {
+.sign_up_form, .sign_in_form {
     position: absolute;
 
     top: 50%;
@@ -20,7 +20,11 @@
     border-radius: 20px;
 }
 
-.sign_up_form input, .sign_up_btn {
+.sign_up_form {
+    height: 50%;
+}
+
+.sign_up_form input, .sign_in_form input, .sign_up_btn {
 
     padding: 1% 4%;
     margin: 2% 0;
@@ -50,10 +54,14 @@
     padding: 0;
 
     width: 50%;
-    height: 10%;
+    height: 15%;
+
+    transition: all .2s;
 }
 
 .sign_up_btn:hover {
+    box-shadow:  0 15px 25px rgba(246, 65, 108, .3);
+
     color: #00b8a9;
 }
 
@@ -76,5 +84,8 @@
 }
 
 .sign_up_link:hover {
-    color: #ffc34b;
+
+    background-color: #008378;
+
+    color: #fce49e;
 }

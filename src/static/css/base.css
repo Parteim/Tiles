@@ -12,6 +12,8 @@ body {
     background-color: #f8f3d4;
 
     font-family: 'Baloo Tamma 2', cursive;
+
+    transition: all .2s;
 }
 
 .main_menu {
@@ -25,6 +27,8 @@ body {
     justify-content: center;
 
     background-color: #ffde7d;
+
+    transition: all .2s;
 
     z-index: 10;
 }
@@ -65,9 +69,9 @@ body {
 }
 
 .main_menu_item:hover {
-    transform: translate(0,10px);
+    transform: translate(0, 10px);
 
-     box-shadow: 0 13px 23px rgba(246, 65, 108, .3);
+    box-shadow: 0 13px 23px rgba(246, 65, 108, .3);
 }
 
 .sign_up_container {
@@ -84,4 +88,34 @@ body {
 
 main {
     padding-top: 7%;
+}
+
+.flashes {
+    position: fixed;
+
+    top: 20%;
+    left: 50%;
+    transform: translate(-20%, -50%);
+
+    padding: 20px;
+
+    width: 30%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: #ffde7d;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 20px rgba(246, 65, 108, .3);
+
+    color: #114c47;
+    font-size: 21px;
+
+    transition: all .2s;
+
+    z-index: 20;
 }
