@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 
 class Configurations:
@@ -11,3 +12,6 @@ class Configurations:
     # database
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:1234@localhost/Tiles'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # Session
+    PERMANENT_SESSION_LIFETIME = timedelta(days=1)

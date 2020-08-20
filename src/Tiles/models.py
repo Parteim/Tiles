@@ -5,9 +5,9 @@ class Tile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(10), default='God')
     tile_type = db.Column(db.String(30))
-    styles = db.relationship('TileStyles', uselist=False, backref='tile')
+    styles = db.relationship('TileStyles', uselist=False, back_populates='tile')
 
-    elements = db.relationship('Elements', backref='tile')
+    elements = db.relationship('Element', back_populates='tile')
 
 
 class TileStyles(db.Model):
@@ -17,14 +17,14 @@ class TileStyles(db.Model):
     filters = db.Column(db.String(255))
 
     tile_id = db.Column(db.Integer, db.ForeignKey('tile.id'))
-    tile = db.relationship('Tile', backref='styles')
+    tile = db.relationship('Tile', back_populates='styles')
 
 
 class Element(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     tile_id = db.Column(db.Integer, db.ForeignKey('tile.id'))
-    tile = db.relationship('Tile', backref='elements')
+    tile = db.relationship('Tile', back_populates='elements')
 
     content_type = db.Column(db.String(50))
 

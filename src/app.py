@@ -7,10 +7,6 @@ import os
 # local
 from config import Configurations
 
-# Blueprints
-from Tiles.blueptint import tiles
-from Users.blueprint import app_user
-
 app = Flask(
     __name__,
     template_folder=os.path.abspath('templates'),
@@ -24,8 +20,14 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
+# Blueprints
+from Tiles.blueptint import tiles
+from Users.blueprint import app_user
+
+
 # Register models
 from Tiles.models import Element, TileStyles, Tile
 
 # Registration blueprints
 app.register_blueprint(tiles, url_prefix='/tiles')
+app.register_blueprint(app_user, url_prefix='/user')
