@@ -17,18 +17,23 @@
 
 {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
+    <ul id="flashes" class=flashes>
     {% for message in messages %}
-      <li>{{ message }}</li>
+      <li class="">{{ message }}</li>
     {% endfor %}
     </ul>
+<script>
+    let flashes = NaN;
+
+
+</script>
   {% endif %}
 {% endwith %}
 
 <menu class="main_menu">
 
     <li class="main_menu_item sign_up_container">
-        <a href="{{ url_for('User.sign_in') }}" class="link_sign_up">
+        <a href="/login" class="link_sign_up">
             <i class="fas fa-sign-in-alt"></i>
         </a>
     </li>

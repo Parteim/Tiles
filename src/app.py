@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+
 import os
 
 # local
@@ -23,7 +24,6 @@ manager.add_command('db', MigrateCommand)
 # Blueprints
 from Tiles.blueptint import tiles
 from Users.blueprint import app_user
-
 
 # Register models
 from Tiles.models import Element, TileStyles, Tile
