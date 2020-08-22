@@ -1,12 +1,13 @@
 from datetime import datetime
 
+from idna import unicode
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db, app
+from app import db
 
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True)
+    username = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(255))
 
@@ -22,6 +23,18 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return unicode(self.id)
 
 
 class GlobalRole(db.Model):

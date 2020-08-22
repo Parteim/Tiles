@@ -5,6 +5,9 @@ flask-scripts
 flask-login
 mysql-connector-python
 marshmallow
+unicode
+email_validator
+
 
 ======== for tests =====
 requests

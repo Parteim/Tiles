@@ -1,23 +1,71 @@
-from flask import Blueprint, redirect, session, render_template, request, url_for, flash
+from flask import Blueprint, redirect, session, render_template, request, url_for, flash, g
+from flask.views import View, MethodView
+from flask_login import current_user, login_user, logout_user, login_required
+from email_validator import validate_email, EmailSyntaxError
 
-from Users.moduls import db, User
+from Users.models import db, User
+
+from app import login_manager
 
 MODULE_NAME = 'User'
 
 app_user = Blueprint(MODULE_NAME, __name__)
 
 
-def sig_up_data_validation(form):
-    if User.query.filter(User.username == form['username']).first() \
-            or User.query.filter(User.email == form['email']).first() \
-            or form['password'] != form['confirm']:
-        return False
-    return True
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 
-@app_user.route('/sign-up', methods=['POST', 'GET'])
-def sign_up():
-    if request.method == 'POST' and sig_up_data_validation(request.form):
+# @app_user.before_request
+# def get_current_user():
+#     g.user = current_user
+
+
+class SignUp(MethodView):
+    def __init__(self):
+        self.template = 'User/sign-up.html'
+        self.form = request.form
+        self.title = 'Sign up'
+        self.symbols = ['*', '!', '@', '#', '$', '%', '^', '&', '_', '-', '=', '+']
+        self.password_len = 6
+
+    def sig_up_data_validation(self):
+        def check_symbols():
+
+            for symbol in self.symbols:
+                if symbol in password:
+                    return True
+            flash('Password must contain some of symbol\n', ' '.join(self.symbols))
+            return False
+
+        email = self.form['email']
+        password = self.form['password']
+        confirm = self.form['confirm']
+        try:
+            validate_email(email).email
+        except EmailSyntaxError:
+            flash('Incorrect email')
+            return False
+        if User.query.filter(User.email == email).first():
+            flash('User with same email already exist.')
+            return False
+        elif len(password) < self.password_len:
+            flash(f'password must be much than {self.password_len}.')
+            return False
+        elif not check_symbols():
+            return False
+        elif password != confirm:
+            flash('Password not confirmed.')
+            return False
+        return True
+
+    def get(self):
+        return render_template(self.template, title=self.title)
+
+    def post(self):
+        if not self.sig_up_data_validation():
+            return render_template(self.template)
         try:
             user = User(
                 username=request.form['username'],
@@ -26,25 +74,47 @@ def sign_up():
             )
             db.session.add(user)
             db.session.commit()
+            flash('Sign up is successful.')
+            return redirect(url_for('User.sign-in'))
         except Exception:
-            flash('message')
-    return render_template('User/sign-up.html')
+            flash('Something wrong')
+        return render_template(self.template, title=self.title)
 
 
-@app_user.route('/sign-in', methods=['POST', 'GET'])
-def sign_in():
-    if request.method == 'POST':
+class SignIn(MethodView):
+    def __init__(self):
+        self.template = 'User/sign-in.html'
+
+    def get(self):
+        return render_template(self.template)
+
+    def post(self):
         username = request.form['username']
         password = request.form['password']
+        next_ = request.args.get('next')
         user = User.query.filter(User.username == username).first()
         if user and user.check_password(password):
-            session['username'] = username
-            return redirect(url_for('wall'))
-    return render_template('User/sign-in.html')
+            login_user(user)
+            flash(f'Welcome {username}')
+        else:
+            flash('Incorrect username or password.')
+            return redirect(url_for('User.sign-in'))
+        return redirect(next_ or url_for('wall'))
 
 
-@app_user.route('/logout')
+@login_required
 def logout():
-    if 'username' in session:
-        session.pop('username')
-    return redirect(url_for('User.sign_in'))
+    logout_user()
+    flash('You are sign out.')
+    return redirect(url_for('User.sign-in'))
+
+
+sign_up = SignUp.as_view('sign-up')
+app_user.add_url_rule('/sign-up/', view_func=sign_up, methods=['GET', ])
+app_user.add_url_rule('/sign-up/', view_func=sign_up, methods=['POST', ])
+
+sign_in = SignIn.as_view('sign-in')
+app_user.add_url_rule('/sign-in/', view_func=sign_in, methods=['GET', ])
+app_user.add_url_rule('/sign-in/', view_func=sign_in, methods=['POST', ])
+
+app_user.add_url_rule('/logout/', view_func=logout, methods=['GET', ])
