@@ -13,13 +13,15 @@ class User(db.Model):
 
     date = db.Column(db.DateTime, default=datetime.now())
 
+    profile = db.relationship('Profile', uselist=False, back_populates='user')
+
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
         self.password = generate_password_hash(password)
 
     def __repr__(self):
-        return f'<id: {self.id}; username: {self.username}; email: {self.email}'
+        return f'<id: {self.id}; username: {self.username}; email: {self.email}>'
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
@@ -43,3 +45,17 @@ class GlobalRole(db.Model):
 
     def __repr__(self):
         return f'<id: {self.id}; name: {self.name}>'
+
+
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', back_populates='profile')
+
+    image = db.Column(db.String(255))
+
+    def __init__(self, user):
+        self.user = user
+
+    def __repr__(self):
+        return f'<id: {self.id}; user: {self.user}>'

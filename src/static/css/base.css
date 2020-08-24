@@ -37,6 +37,7 @@ body {
     position: relative;
 
     padding: 1%;
+    margin: 0 1%;
 
     height: 105%;
 
@@ -74,7 +75,7 @@ body {
     box-shadow: 0 13px 23px rgba(246, 65, 108, .3);
 }
 
-.sign_up_container {
+.left_side_menu {
     position: absolute;
 
     left: 2%;
@@ -82,7 +83,19 @@ body {
     transform: translate(-2%, -50%);
 }
 
-.sign_up_container:hover {
+.left_side_menu:hover {
+    transform: translate(-2%, calc(-50% + 10px));
+}
+
+.right_side_menu {
+    position: absolute;
+
+    right: 2%;
+    top: 50%;
+    transform: translate(-2%, -50%);
+}
+
+.right_side_menu:hover {
     transform: translate(-2%, calc(-50% + 10px));
 }
 
@@ -115,7 +128,12 @@ main {
     color: #114c47;
     font-size: 21px;
 
-    transition: all .2s;
+    transition: all .5s;
 
     z-index: 20;
+}
+
+.flashes-message {
+    cursor: pointer;
+    transition: all .3s;
 }

@@ -1,0 +1,29 @@
+.error_message_container {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 5%;
+
+    width: 40%;
+    height: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffde7d;
+
+    border-radius: 20px;
+
+    transition: all .3s;
+}
+
+.message_error {
+    color: #114c47;
+    font-size: 25px;
+    line-height: 27px;
+    text-align: center;
+}

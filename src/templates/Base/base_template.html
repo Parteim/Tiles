@@ -19,32 +19,50 @@
 {% if messages %}
 <ul id="flashes" class=flashes>
     {% for message in messages %}
-    <li class="">{{ message }}</li>
+    <li class="flashes-message">{{ message }}</li>
     {% endfor %}
 </ul>
 <script>
-    let flashes = NaN;
+    let flashes = document.getElementById('flashes');
 
-
+    for (let child of flashes.children) {
+        child.addEventListener('click', function () {
+            child.style.opacity = '0';
+            setTimeout(function () {
+                flashes.removeChild(child);
+                if (!flashes.children.length) {
+                    flashes.style.opacity = '0';
+                    setTimeout(function () {
+                        document.getElementsByTagName('body')[0].removeChild(flashes)
+                    }, 600);
+                }
+            }, 400);
+        });
+    }
 </script>
 {% endif %}
 {% endwith %}
 
 <menu class="main_menu">
 
-    <li class="main_menu_item sign_up_container">
-
-        {% if current_user.is_authenticated %}
+    {% if current_user.is_authenticated %}
+    <li class="main_menu_item right_side_menu">
         <a href="{{ url_for('User.logout') }}" class="link_sign_up">
             <i class="fas fa-sign-out-alt"></i>
         </a>
-        {% else %}
+    </li>
+        <li class="main_menu_item left_side_menu">
+        <a href="{{ url_for('User.profile') }}" class="link_sign_up">
+            {{ current_user.username }}
+        </a>
+    </li>
+    {% else %}
+    <li class="main_menu_item left_side_menu">
         <a href="{{ url_for('User.sign-in') }}" class="link_sign_up">
             <i class="fas fa-sign-in-alt"></i>
         </a>
-        {% endif %}
-
     </li>
+    {% endif %}
     <li class="main_menu_item">
         <a href="{{ url_for('wall') }}" class="link_wall">wall</a>
     </li>
