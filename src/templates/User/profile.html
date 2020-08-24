@@ -6,6 +6,31 @@
 
 {% block main %}
 
+<header class="profile_header">
 
+    <div class="user_container">
+
+        <div id="profile_img_container" class="profile_img_container">
+            <img src="{{ url_for('static', filename='img/user-1.jpg') }}" alt="{{ current_user.username }}" class="profile_img r-img">
+            <div id="profile_image_menu" class="profile_img_menu">
+                <div  class="profile_img_menu_item">
+                    <button id="call_upload_img_form" title="upload image">
+                        <i class="far fa-file-image"></i>
+                    </button>
+                </div>
+
+                <button id="open_menu"><i id="arrow_btn" class="fas fa-angle-down"></i></button>
+            </div>
+        </div>
+
+        <h1 class="profile_username">{{ current_user.username }}</h1>
+
+    </div>
+
+</header>
 
 {% endblock main %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock scripts %}

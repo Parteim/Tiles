@@ -3,6 +3,8 @@ from flask.views import View, MethodView
 from flask_login import current_user, login_user, logout_user, login_required
 from email_validator import validate_email, EmailSyntaxError
 
+from idna import unicode
+
 from Users.models import db, User, Profile
 
 from app import login_manager
@@ -121,9 +123,18 @@ def logout():
     return redirect(url_for('User.sign-in'))
 
 
-@login_required
-def profile():
-    return render_template('User/profile.html')
+class UserProfile(MethodView):
+    def __init__(self):
+        self.template = 'User/profile.html'
+        self.save_path = None
+
+    @login_required
+    def get(self):
+        return render_template(self.template)
+
+    @login_required
+    def post(self):
+        pass
 
 
 sign_up = SignUp.as_view('sign-up')
@@ -136,4 +147,5 @@ app_user.add_url_rule('/sign-in/', view_func=sign_in, methods=['POST', ])
 
 app_user.add_url_rule('/logout/', view_func=logout, methods=['GET', ])
 
+profile = UserProfile.as_view('profile')
 app_user.add_url_rule('/profile/', view_func=profile, methods=['GET', ])

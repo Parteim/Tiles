@@ -1,4 +1,5 @@
 from flask import render_template, flash, session, redirect, url_for, request, jsonify
+from flask_login import current_user
 
 from app import app
 
@@ -8,11 +9,12 @@ def wall():
     return render_template('Core/wall.html', title='Wall')
 
 
-# @app.errorhandler(401)
-# def unauthorized_error(e):
-#     print(request.args.add())
-#     flash('Need authorisation')
-#     return redirect(url_for('User.sign-in'))
+@app.route('/get_username')
+def get_username():
+    response = {
+        'username': current_user.username
+    }
+    return jsonify(response)
 
 
 @app.errorhandler(404)

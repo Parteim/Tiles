@@ -6,19 +6,23 @@
 
 {% block main %}
 
-<form class="sign_up_form" action="{{ url_for('User.sign-up') }}" method="POST">
+<main>
 
-    <h3 class="register_form_title">Sign up</h3>
-    <label for="username"></label>
-    <input type="text" id="username" name="username" placeholder="username">
-    <label for="email"></label>
-    <input type="text" id="email" name="email" placeholder="email">
-    <label for="password"></label>
-    <input type="password" id="password" name="password" placeholder="password">
-    <label for="confirm"></label>
-    <input type="password" id="confirm" name="confirm" placeholder="confirm">
-    <button class="sign_up_btn" type="submit">Sign up</button>
+    <form class="sign_up_form" action="{{ url_for('User.sign-up') }}" method="POST">
 
-</form>
+        <h3 class="register_form_title">Sign up</h3>
+        <label for="username"></label>
+        <input type="text" id="username" name="username" placeholder="username">
+        <label for="email"></label>
+        <input type="text" id="email" name="email" placeholder="email">
+        <label for="password"></label>
+        <input type="password" id="password" name="password" placeholder="password">
+        <label for="confirm"></label>
+        <input type="password" id="confirm" name="confirm" placeholder="confirm">
+        <button class="sign_up_btn" type="submit">Sign up</button>
+
+    </form>
+
+</main>
 
 {% endblock main %}

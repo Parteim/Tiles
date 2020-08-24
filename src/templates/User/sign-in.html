@@ -6,17 +6,21 @@
 
 {% block main %}
 
-<form class="sign_in_form" action="{{ url_for('User.sign-in', next=request.args.get('next'))}}"  method="POST">
+<main>
 
-    <h3 class="register_form_title">Sign in</h3>
-    <label for="username"></label>
-    <input type="text" id="username" name="email" placeholder="email">
-    <label for="password"></label>
-    <input type="password" id="password" name="password" placeholder="password">
-    <button class="sign_up_btn" type="submit">Sign in</button>
-    <a href="{{ url_for('User.sign-up') }}" class="sign_up_link">sign up</a>
+    <form class="sign_in_form" action="{{ url_for('User.sign-in', next=request.args.get('next'))}}"  method="POST">
+
+        <h3 class="register_form_title">Sign in</h3>
+        <label for="username"></label>
+        <input type="text" id="username" name="email" placeholder="email">
+        <label for="password"></label>
+        <input type="password" id="password" name="password" placeholder="password">
+        <button class="sign_up_btn" type="submit">Sign in</button>
+        <a href="{{ url_for('User.sign-up') }}" class="sign_up_link">sign up</a>
 
 
-</form>
+    </form>
+
+</main>
 
 {% endblock main %}

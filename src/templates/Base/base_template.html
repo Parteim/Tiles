@@ -51,7 +51,7 @@
             <i class="fas fa-sign-out-alt"></i>
         </a>
     </li>
-        <li class="main_menu_item left_side_menu">
+    <li class="main_menu_item left_side_menu">
         <a href="{{ url_for('User.profile') }}" class="link_sign_up">
             {{ current_user.username }}
         </a>
@@ -69,14 +69,16 @@
 
 </menu>
 
+{% block main %}
+
 <main>
 
-    {% block main %}
-
-    {% endblock main %}
 
 </main>
 
+{% endblock main %}
+
+<script src="{{ url_for('static', filename='js/requests.js') }}" type="module"></script>
 {% block scripts %}
 {% endblock scripts %}
 
