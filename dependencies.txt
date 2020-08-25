@@ -4,7 +4,7 @@ flask-migrate
 flask-scripts
 flask-login
 mysql-connector-python
-marshmallow
+flask-marshmallow
 unicode
 email_validator
 

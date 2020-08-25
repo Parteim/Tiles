@@ -130,7 +130,7 @@ class UserProfile(MethodView):
 
     @login_required
     def get(self):
-        return render_template(self.template)
+        return render_template(self.template, title=f'{current_user.username} profile')
 
     @login_required
     def post(self):

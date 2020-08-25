@@ -15,6 +15,8 @@ class User(db.Model):
 
     profile = db.relationship('Profile', uselist=False, back_populates='user')
 
+    tiles = db.relationship('Tile', back_populates='author')
+
     def __init__(self, username, email, password):
         self.username = username
         self.email = email

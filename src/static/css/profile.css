@@ -62,7 +62,7 @@
     justify-content: space-around;
     flex-direction: column;
 
-    background-color: rgba(255, 222, 125, .8);
+    background-color: rgba(255, 222, 125, 1);
 
     overflow: hidden;
 
@@ -139,6 +139,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     background-color: #ffde7d;
 
@@ -146,19 +147,19 @@
 
     overflow: hidden;
 
-    transition: all .2s;
+    transition: all .4s;
 }
 
 
 .upload_image_label {
     position: relative;
 
-    width: 50%;
+    width: 70%;
     height: 50%;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 
     color: #1b756d;
     font-size: 30px;
@@ -183,7 +184,7 @@
     position: absolute;
 
     top: 5%;
-    left: 5%;
+    right: 3%;
     transform: translate(-5%, -5%);
 
     background: none;
@@ -198,4 +199,28 @@
 
 .close_upload_image_form_bnt:hover {
     color: #00b8a9;
+}
+
+.send_request_btn {
+    padding: 3%;
+
+    background-color: #f8f3d4;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: #1b756d;
+    font-size: 20px;
+
+    transition: all .2s;
+
+}
+
+.send_request_btn:hover {
+    background-color: #f8f3d4;
+
+    color: #00b8a9;
+    font-size: 20px;
+
 }
