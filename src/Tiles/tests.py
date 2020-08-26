@@ -6,20 +6,19 @@ import json
 def get_data():
     data = {
         'tile': {
-            'author': '',
-            'title': '',
+            'author': 'God@mail.ru',
+            'title': 'Test tile',
+            'type': 'medium',
             'styles': {
-                'background': '',
-                'border': '',
-                'tile': '',
+                'background': '#b756d',
+                'border': '3px solid #00b8a9',
             },
             'elements': [
                 {
-                    'tile': '',
-                    'content_type': '',
-                    'columns': '',
-                    'rows': '',
-                    'text': '',
+                    'content_type': 'Text',
+                    'columns': '6',
+                    'rows': '2',
+                    'text': 'Some testing text',
                 }
             ],
         }
@@ -29,10 +28,7 @@ def get_data():
 
 def run():
     url = 'http://127.0.0.1:5000/tiles/create-tile/'
-    data = {
-        'username': 'Biba',
-        'age': 20,
-    }
+    data = get_data()
 
     response = rq.post(
         url,

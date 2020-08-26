@@ -32,6 +32,10 @@ class TileStyles(db.Model):
     tile_id = db.Column(db.Integer, db.ForeignKey('tile.id'))
     tile = db.relationship('Tile', back_populates='styles')
 
+    def __init__(self, background, border):
+        self.background = background
+        self.border = border
+
     def __repr__(self):
         return f'id: {self.id}; tile: {self.tile.title or self.tile};'
 

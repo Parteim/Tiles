@@ -7,7 +7,7 @@ mysql-connector-python
 flask-marshmallow
 unicode
 email_validator
-
+marshmallow-sqlalchemy
 
 ======== for tests =====
 requests

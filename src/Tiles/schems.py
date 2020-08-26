@@ -1,4 +1,5 @@
 from .models import Tile, TileStyles, Element, TileContentVideo, TileContentLink, TileContentImage, TileContentFile
+from Users.models import User
 from app import ma
 
 
@@ -7,7 +8,7 @@ class TileSchema(ma.SQLAlchemySchema):
         model = Tile
 
     id = ma.auto_field()
-    author = ma.auto_field()
+    author = ma.HyperlinkRelated(User)
     title = ma.auto_field()
 
     tile_type = ma.auto_field()
@@ -30,7 +31,7 @@ class TileStylesSchema(ma.SQLAlchemySchema):
 
 class ElementSchema(ma.SQLAlchemySchema):
     class Meta:
-        model = TileStyles
+        model = Element
 
     id = ma.auto_field()
     tile = ma.auto_field()
