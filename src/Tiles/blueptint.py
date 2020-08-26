@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template, jsonify
-from flask.views import MethodView
+from flask.views import MethodView, View
+from flask_login import current_user
 
 from app import db
 
@@ -7,6 +8,7 @@ from app import db
 from .models import Element, TileStyles, Tile
 from .schems import TileSchema, TileStylesSchema, ElementSchema
 from Users.models import User
+from Users.schems import UserSchema
 
 MODULE_NAME = 'Tiles'
 
@@ -14,14 +16,23 @@ tiles = Blueprint(MODULE_NAME, __name__)
 
 
 class SingleTile(MethodView):
+    tile_schema = TileSchema()
+    tiles_schema = TileSchema(many=True)
 
     def get(self, tile_id):
-        return
+        print(request.url)
+        tile = Tile.query.get(tile_id)
+
+        response = self.tile_schema.dump(tile) or {'status': 'tile not exist'}
+
+        return jsonify(response)
 
     def post(self):
         content = request.get_json(force=True)
 
         user = User.query.filter(User.email == content['tile']['author']).first()
+
+        print(user)
 
         tile_styles = TileStyles(
             background=content['tile']['styles']['background'],
@@ -50,12 +61,12 @@ class SingleTile(MethodView):
         ])
         db.session.commit()
 
-        tile_schema = TileSchema()
+        output_tile = Tile.query.all()[-1]
 
         response = {
             'status': 'Successful',
-            'username': user,
-            'tile': tile_schema.dump(tile),
+            'username': user.username,
+            'tile': self.tile_schema.dump(output_tile),
         }
 
         return jsonify(response)

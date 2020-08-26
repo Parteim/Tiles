@@ -20,4 +20,4 @@ def get_username():
 @app.errorhandler(404)
 def unauthorized_error(e):
     flash('page not found')
-    return render_template('Core/error.html', error=e)
+    return render_template('Core/error.html', error=e), 404

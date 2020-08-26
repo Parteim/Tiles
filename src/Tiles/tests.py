@@ -6,7 +6,7 @@ import json
 def get_data():
     data = {
         'tile': {
-            'author': 'God@mail.ru',
+            'author': 'God@gmail.com',
             'title': 'Test tile',
             'type': 'medium',
             'styles': {
@@ -26,7 +26,7 @@ def get_data():
     return data
 
 
-def run():
+def post():
     url = 'http://127.0.0.1:5000/tiles/create-tile/'
     data = get_data()
 
@@ -37,5 +37,17 @@ def run():
     return response.json()
 
 
+def get(element_id=1):
+    url = f'http://127.0.0.1:5000/tiles/get-tile/{element_id}/'
+
+    response = rq.get(
+        url,
+
+    )
+    if response.status_code == 404:
+        return 'incorrect url\npage notfound'
+    return response.json()
+
+
 if __name__ == '__main__':
-    print(run())
+    print(get())

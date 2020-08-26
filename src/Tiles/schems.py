@@ -6,9 +6,10 @@ from app import ma
 class TileSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Tile
+        include_fk = True
 
     id = ma.auto_field()
-    author = ma.HyperlinkRelated(User)
+    author = ma.auto_field()
     title = ma.auto_field()
 
     tile_type = ma.auto_field()
