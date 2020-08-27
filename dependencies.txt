@@ -1,7 +1,7 @@
 flask
 flask-sqlalchemy
 flask-migrate
-flask-scripts
+flask-script
 flask-login
 mysql-connector-python
 flask-marshmallow

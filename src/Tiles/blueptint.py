@@ -16,16 +16,40 @@ tiles = Blueprint(MODULE_NAME, __name__)
 
 
 class SingleTile(MethodView):
+    user_schema = UserSchema()
     tile_schema = TileSchema()
     tiles_schema = TileSchema(many=True)
+    tile_styles_schema = TileStylesSchema()
+    tile_element_schema = ElementSchema()
 
-    def get(self, tile_id):
-        print(request.url)
-        tile = Tile.query.get(tile_id)
+    def compose_response_tile(self, tile):
+        response = self.tile_schema.dump(tile)
+        author = self.user_schema.dump(
+            User.query.get(response['author'])
+        )
+        response['author'] = author
+        styles = self.tile_styles_schema.dump(
+            TileStyles.query.get(response['styles'])
+        )
+        response['styles'] = styles
 
-        response = self.tile_schema.dump(tile) or {'status': 'tile not exist'}
+        elements = []
+        for element_id in response['elements']:
+            element = self.tile_element_schema.dump(
+                Element.query.get(element_id)
+            )
+            elements.append(element)
+        response['elements'] = elements
 
         return jsonify(response)
+
+    def get(self, tile_id):
+        tile = Tile.query.get(tile_id)
+
+        if tile is None:
+            return {'error': 'tile not exist'}
+
+        return self.compose_response_tile(tile)
 
     def post(self):
         content = request.get_json(force=True)
@@ -34,16 +58,16 @@ class SingleTile(MethodView):
 
         print(user)
 
-        tile_styles = TileStyles(
-            background=content['tile']['styles']['background'],
-            border=content['tile']['styles']['border'],
-        )
-
         tile = Tile(
             author=user,
             title=content['tile']['title'],
-            styles=tile_styles,
             tile_type=content['tile']['type'],
+        )
+
+        tile_styles = TileStyles(
+            background=content['tile']['styles']['background'],
+            border=content['tile']['styles']['border'],
+            tile=tile,
         )
 
         element = Element(
@@ -61,15 +85,9 @@ class SingleTile(MethodView):
         ])
         db.session.commit()
 
-        output_tile = Tile.query.all()[-1]
+        created_tile = Tile.query.all()[-1]
 
-        response = {
-            'status': 'Successful',
-            'username': user.username,
-            'tile': self.tile_schema.dump(output_tile),
-        }
-
-        return jsonify(response)
+        return self.compose_response_tile(created_tile)
 
 
 tile = SingleTile.as_view('tile')

@@ -6,7 +6,7 @@ import json
 def get_data():
     data = {
         'tile': {
-            'author': 'God@gmail.com',
+            'author': 'Sergej_kajnov@mail.ru',
             'title': 'Test tile',
             'type': 'medium',
             'styles': {
@@ -50,4 +50,4 @@ def get(element_id=1):
 
 
 if __name__ == '__main__':
-    print(get())
+    print(post())

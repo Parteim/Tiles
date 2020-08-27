@@ -11,10 +11,9 @@ class Tile(db.Model):
 
     elements = db.relationship('Element', back_populates='tile')
 
-    def __init__(self, author, tile_type, styles, title=None):
+    def __init__(self, author, tile_type, title=None):
         self.author = author
         self.tile_type = tile_type
-        self.styles = styles
 
         if title:
             self.title = title
@@ -32,9 +31,10 @@ class TileStyles(db.Model):
     tile_id = db.Column(db.Integer, db.ForeignKey('tile.id'))
     tile = db.relationship('Tile', back_populates='styles')
 
-    def __init__(self, background, border):
+    def __init__(self, background, border, tile):
         self.background = background
         self.border = border
+        self.tile = tile
 
     def __repr__(self):
         return f'id: {self.id}; tile: {self.tile.title or self.tile};'
